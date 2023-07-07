@@ -92,7 +92,7 @@ adding the following configuration to `~/.dbt/profiles.yml`.
 
 ```yaml
 ---
-dbt_slamco:
+slamco:
   outputs:
     dev:
       type: postgres
