@@ -24,10 +24,10 @@ By default, sample data is located in the `data` directory.
 | ---------------- | --------------------------------------------- |
 | billing.csv      | Contains sample user billing data             |
 | products.csv     | Contains sample product list and their prices |
-| transactions.csv | Contains sample transactions                  |
-| users.csv        | Contains sample userbase                      |
+| orders.csv       | Contains sample orders                        |
+| customers.csv    | Contains sample customers                     |
 
-Product prices, user names, contact details, credit cards and transactions are
+Product prices, user names, contact details, credit cards and orders are
 randomly generated using the `Faker` python package.
 
 To recreate a new set of sample data:

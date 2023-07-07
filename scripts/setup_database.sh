@@ -29,8 +29,8 @@ create_new_schema 'development' 'dbt_user' # for dbt
 
 # create empty tables in airbnb schema
 psql -d 'raw' -c \
-    'create table if not exists slamco.users (
-        user_id integer,
+    'create table if not exists slamco.customers (
+        customer_id integer,
         created_date date,
         gender varchar,
         prefix varchar,
@@ -38,7 +38,9 @@ psql -d 'raw' -c \
         last_name varchar,
         email varchar,
         company_email varchar,
-        address varchar,
+        building_number varchar,
+        street_name varchar,
+        street_suffix varchar,
         city varchar,
         postcode varchar,
         country varchar,
@@ -54,18 +56,19 @@ psql -d 'raw' -c \
     );
     create table if not exists slamco.billing (
         billing_id integer,
-        user_id integer,
+        customer_id integer,
         created_date date,
         credit_card_provider varchar,
         credit_card_security_code varchar,
         credit_card_number varchar,
         credit_card_expiry_date varchar
     );
-    create table if not exists slamco.transactions (
-        transaction_id integer,
+    create table if not exists slamco.orders (
+        order_id integer,
         customer_id integer,
         created_date date,
         paid_date date,
+        payment_method varchar,
         order_status varchar,
         line_item_sku varchar,
         line_item_name varchar,
@@ -81,7 +84,7 @@ psql -d 'raw' -c \
     );' -U "$POSTGRES_USER"
 
 # load data from csv files
-load_csv_to_database 'raw' 'slamco.users' "/data/users.csv"
+load_csv_to_database 'raw' 'slamco.customers' "/data/customers.csv"
 load_csv_to_database 'raw' 'slamco.products' "/data/products.csv"
 load_csv_to_database 'raw' 'slamco.billing' "/data/billing.csv"
-load_csv_to_database 'raw' 'slamco.transactions' "/data/transactions.csv"
+load_csv_to_database 'raw' 'slamco.orders' "/data/orders.csv"
