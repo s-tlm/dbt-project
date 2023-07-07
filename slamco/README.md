@@ -64,7 +64,7 @@ is to model the company's order data for the sales team.
 
 | Attribute            | Description                               |
 | -------------------- | ----------------------------------------- |
-| `transaction_id`     | The primary key                           |
+| `order_id`           | The primary key                           |
 | `customer_id`        | Customer id who made the transaction      |
 | `created_date`       | Transaction date                          |
 | `paid_date`          | Transaction paid date                     |
