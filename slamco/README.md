@@ -22,4 +22,6 @@ is to model the company's transaction data for the sales team.
 After speaking to the business and reviewing the source data, you decide on the
 following dimensional model.
 
-![Your sales dimensional model](./assets/readme_sales_model.drawio.png)
+<p align="center">
+  <img width="700" src="./assets/readme_sales_model.drawio.png"/>
+</p>
