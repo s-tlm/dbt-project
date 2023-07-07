@@ -4,17 +4,10 @@
 
 A simple data project using Docker, Postgres and DBT.
 
-This repository helps you get started with DBT Core with Postgres connector.
-Everything you need will be contained in the Dockerfile.
-
-You won't need any Cloud-service providers, nor an account with a service such as
-Databricks or Snowflake. Simply build and run the Docker image!
-
 ## What's Installed
 
 1. Postgres Database
 2. DBT Core
-3. TODO Airflow
 
 ## Requirements
 
@@ -55,9 +48,9 @@ Build the Dockerfile.
 docker build -t db-image .
 ```
 
-Create and run new container from the Docker image in detached mode. When the
-image runs for the first time, it will automatically load the database with the
-sample datasets in the `data` folder.
+Create and run the container in detached mode. When the image runs for the first
+time, it will automatically load the database with the sample datasets in the
+`data` folder.
 
 ```shell
 docker run --name dbt-project -d -p 5432:5432 db-image
@@ -99,7 +92,7 @@ adding the following configuration to `~/.dbt/profiles.yml`.
 
 ```yaml
 ---
-dbt_slam:
+dbt_slamco:
   outputs:
     dev:
       type: postgres
