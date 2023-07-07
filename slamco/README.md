@@ -10,12 +10,12 @@ is to model the company's order data for the sales team.
 
 ## Tables
 
-| Database | Schema | Table Name   | Description                       |
-| -------- | ------ | ------------ | -----------                       |
-| raw      | slamco | customers    | SLAMCO's registered customer base |
-| raw      | slamco | products     | SLAMCO's current product offering |
-| raw      | slamco | billing      | SLAMCO's user payment information |
-| raw      | slamco | Orders       | SLAMCO's raw retail orders        |
+| Database    | Schema | Table Name   | Description                       |
+| ----------- | ------ | ------------ | --------------------------------- |
+| development | slamco | customers    | SLAMCO's registered customer base |
+| development | slamco | products     | SLAMCO's current product offering |
+| development | slamco | billing      | SLAMCO's customer billing data    |
+| development | slamco | orders       | SLAMCO's raw retail orders        |
 
 ### Customers
 

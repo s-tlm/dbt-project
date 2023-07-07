@@ -19,16 +19,16 @@ load_csv_to_database() {
   psql -d "$1" -c "\copy $2 from '$3' csv header;" -U "$POSTGRES_USER"
 }
 
-# setup databases
-create_new_database 'raw'
+# setup database
 create_new_database 'development'
 
 # setup schemas
-create_new_schema 'raw' 'slamco' # for raw data
+# use the same database to avoid cross-database reference error
+create_new_schema 'development' 'slamco' # for raw data
 create_new_schema 'development' 'dbt_user' # for dbt
 
 # create empty tables in airbnb schema
-psql -d 'raw' -c \
+psql -d 'development' -c \
     'create table if not exists slamco.customers (
         customer_id integer,
         created_date date,
@@ -84,7 +84,7 @@ psql -d 'raw' -c \
     );' -U "$POSTGRES_USER"
 
 # load data from csv files
-load_csv_to_database 'raw' 'slamco.customers' "/data/customers.csv"
-load_csv_to_database 'raw' 'slamco.products' "/data/products.csv"
-load_csv_to_database 'raw' 'slamco.billing' "/data/billing.csv"
-load_csv_to_database 'raw' 'slamco.orders' "/data/orders.csv"
+load_csv_to_database 'development' 'slamco.customers' "/data/customers.csv"
+load_csv_to_database 'development' 'slamco.products' "/data/products.csv"
+load_csv_to_database 'development' 'slamco.billing' "/data/billing.csv"
+load_csv_to_database 'development' 'slamco.orders' "/data/orders.csv"
