@@ -38,10 +38,11 @@ for user_id in range(NUM_CUSTOMERS):
     company_email = fake.company_email()
 
     # Address
-    address = fake.street_address()
+    building_number = fake.building_number()
+    street_name = fake.street_name()
+    street_suffix = fake.street_suffix()
     city = fake.city()
     postcode = fake.postcode()
-    country = fake.country()
 
     # Phone number
     phone_number = fake.phone_number()
@@ -55,10 +56,12 @@ for user_id in range(NUM_CUSTOMERS):
         last_name,
         email,
         company_email,
-        address,
+        building_number,
+        street_name,
+        street_suffix,
         city,
         postcode,
-        country,
+        'Australia',
         phone_number
     ])
 
@@ -73,7 +76,9 @@ users_df = pd.DataFrame(
             'last_name',
             'email',
             'company_email',
-            'address',
+            'building_number',
+            'street_name',
+            'street_suffix',
             'city',
             'postcode',
             'country',

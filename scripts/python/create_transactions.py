@@ -14,9 +14,10 @@ import pandas as pd
 class OrderProvider(BaseProvider):
     """Create fake order information."""
     financial_statuses = ['Paid', 'Refunded', 'Bounced']
+    payment_methods = ['Credit Card', 'Cash']
 
     def financial_status(self):
-        """Create fake order financial statuses."""
+        """Return a random financial status."""
         return self.random_element(self.financial_statuses)
 
     def order_status(self, status):
@@ -24,6 +25,10 @@ class OrderProvider(BaseProvider):
         if status == 'Bounced':
             return 'Failed'
         return 'Completed'
+
+    def payment_method(self):
+        """Return a random payment method."""
+        return self.random_element(self.payment_methods)
 
 NUM_TRANSACTIONS = 100000
 NUM_CUSTOMERS = 10000
@@ -79,6 +84,7 @@ for transaction_id in range(NUM_TRANSACTIONS):
     # Transaction dates
     created_date = fake.date_between(start_date, date.today())
     paid_date = fake.date_between(created_date, created_date + timedelta(days=5))
+    payment_method = fake.payment_method()
 
     # Line items
     line_item_quantity = fake.random_int(min=1, max=5)
@@ -100,6 +106,7 @@ for transaction_id in range(NUM_TRANSACTIONS):
         customer_id,
         created_date,
         paid_date,
+        payment_method,
         order_status,
         line_item_sku,
         line_item_name,
@@ -121,6 +128,7 @@ transactions_df = pd.DataFrame(
             'customer_id',
             'created_date',
             'paid_date',
+            'payment_method',
             'order_status',
             'line_item_sku',
             'line_item_name',
