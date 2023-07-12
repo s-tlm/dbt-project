@@ -18,6 +18,12 @@ sources:
               - relationships:
                   to: source('slamco', 'customers')
                   field: customer_id
+          - name: line_item_sku
+            tests:
+              - not_null
+              - relationships:
+                  to: source('slamco', 'products')
+                  field: product_sku
       - name: customers
         description: SLAMCO's registered customer base.
         columns:

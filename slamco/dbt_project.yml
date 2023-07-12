@@ -19,7 +19,7 @@ clean-targets:
   - "dbt_packages"
 
 models:
-  dbt_slamco:
+  slamco:
     staging:
       +materialized: view
     intermediate:
