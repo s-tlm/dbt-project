@@ -27,7 +27,7 @@ is to model the company's order data for the sales team.
 | `prefix`          | Customer salutation               |
 | `first_name`      | Customer's first name             |
 | `last_name`       | Customer's surname                |
-| `email`           | Customer's personal email address |
+| `personal_email`  | Customer's personal email address |
 | `company_email`   | Customer's company email address  |
 | `building_number` | Shipping address building number  |
 | `street_name`     | Shipping address street name      |
