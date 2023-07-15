@@ -15,7 +15,7 @@ fiscal_periods as (
 )
 
 select
-    d.date_day as date_key,
+    d.*,
     f.fiscal_week_of_year,
     f.fiscal_week_of_period,
     f.fiscal_period_number,
