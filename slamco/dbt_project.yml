@@ -26,3 +26,8 @@ models:
       +materialized: ephemeral
     marts:
       +materialized: table
+    misc:
+      +materialized: table
+
+vars: 
+  "dbt_date:time_zone": "Australia/Melbourne"
