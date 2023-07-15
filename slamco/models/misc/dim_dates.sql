@@ -1,3 +1,9 @@
+{{
+    config(
+        materialized="table"
+    )
+}}
+
 with
 
 dates as (
@@ -9,7 +15,7 @@ fiscal_periods as (
 )
 
 select
-    d.*,
+    d.date_day as date_key,
     f.fiscal_week_of_year,
     f.fiscal_week_of_period,
     f.fiscal_period_number,

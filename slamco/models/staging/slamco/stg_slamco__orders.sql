@@ -21,7 +21,7 @@ renamed as (
         taxes,
         shipping,
         total,
-        currency_code,
+        currency_code as currency_abbreviation,
         currency_name
     from source
 )
