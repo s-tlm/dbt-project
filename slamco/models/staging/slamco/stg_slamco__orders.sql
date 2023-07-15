@@ -10,7 +10,7 @@ renamed as (
         customer_id,
         created_date,
         paid_date,
-        payment_method,
+        payment_method as payment_type,
         order_status,
         line_item_sku,
         line_item_name,

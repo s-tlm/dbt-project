@@ -1,0 +1,6 @@
+---
+version: 2
+
+models:
+  - name: int_billing_to_customer_joined
+    description: Intermediate model to join customers to their credit card information.

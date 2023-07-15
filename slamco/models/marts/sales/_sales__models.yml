@@ -6,3 +6,5 @@ models:
     description: Customer dimension.
   - name: dim_products
     description: Product dimension.
+  - name: jnk_order_indicators
+    description: Order indicator junk dimension.
