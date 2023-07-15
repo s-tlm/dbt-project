@@ -4,3 +4,5 @@ version: 2
 models:
   - name: dim_customers
     description: Customer dimension.
+  - name: dim_products
+    description: Product dimension.
