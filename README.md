@@ -45,7 +45,7 @@ be overwritten.
 Build the Dockerfile.
 
 ``` shell
-docker build -t db-image .
+docker build -t dbt-slamco .
 ```
 
 Create and run the container in detached mode. When the image runs for the first
@@ -53,7 +53,7 @@ time, it will automatically load the database with the sample datasets in the
 `data` folder.
 
 ```shell
-docker run --name dbt-project -d -p 5432:5432 db-image
+docker run --name dbt-slamco -d -p 5432:5432 dbt-slamco
 
 ```
 
@@ -64,10 +64,10 @@ You can run commands directly in the image using `psql` or `bash`.
 
 ```shell
 # using psql
-docker exec -it dbt-project psql -U dbtuser
+docker exec -it dbt-slamco psql -U dbtuser
 
 # or bash
-docker exec -it dbt-project bash -U dbtuser
+docker exec -it dbt-slamco bash
 ```
 
 ## Connecting to the Database
