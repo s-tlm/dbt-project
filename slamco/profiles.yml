@@ -1,0 +1,12 @@
+slamco:
+  outputs:
+    dev:
+      type: postgres
+      threads: 1
+      host: localhost
+      port: 5432
+      user: dbtuser
+      pass: mydbtproject
+      dbname: development
+      schema: dbt_user
+  target: dev
