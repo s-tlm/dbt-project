@@ -3,7 +3,7 @@
 # Creates fake sales data.
 
 PARENT_DIR=$(git rev-parse --show-toplevel)
-SCRIPTS_DIR="$PARENT_DIR/scripts/python/"
+SCRIPTS_DIR="$PARENT_DIR/faker"
 
 # 1. Create users
 echo "Creating customer data..."
