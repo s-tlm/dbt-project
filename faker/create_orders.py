@@ -34,7 +34,7 @@ NUM_ORDERS = 100000
 NUM_CUSTOMERS = 10000
 CURRENCY_CODE = 'AUD'
 CURRENCY_NAME = 'Australian Dollar'
-export_path = f'{os.path.dirname(__file__)}/../../data'
+export_path = f'{os.path.dirname(__file__)}/../data'
 orders = []
 start_date = datetime.strptime('1/1/2020', '%m/%d/%Y')
 

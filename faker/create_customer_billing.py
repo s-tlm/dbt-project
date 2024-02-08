@@ -10,7 +10,7 @@ import pandas as pd
 from faker import Faker
 
 NUM_CUSTOMERS = 10000
-export_path = f'{os.path.dirname(__file__)}/../../data'
+export_path = f'{os.path.dirname(__file__)}/../data'
 
 fake = Faker('en_AU')
 billing = []
