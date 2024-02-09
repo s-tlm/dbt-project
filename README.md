@@ -2,45 +2,53 @@
 
 ## Overview
 
-A simple data project using Docker, Postgres and DBT.
+A simple data project using Docker, Postgres and dbt Core.
 
 ## What's Installed
 
 1. Postgres Database
-2. DBT Core
+2. dbt Core
 
 ## Requirements
 
-1. Docker
+1. Docker Desktop
 2. Python3
 
 ## Usage
 
 ### Creating Sample Data
 
-By default, sample data is located in the `data` directory.
-
-| File Name        | Description                                   |
-| ---------------- | --------------------------------------------- |
-| billing.csv      | Contains sample user billing data             |
-| products.csv     | Contains sample product list and their prices |
-| orders.csv       | Contains sample orders                        |
-| customers.csv    | Contains sample customers                     |
-
-Product prices, user names, contact details, credit cards and orders are
-randomly generated using the `Faker` python package.
-
-To recreate a new set of sample data:
+Create a new Python virtual environment and install the Faker package.
 
 ```bash
+# MacOS
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Run the provided script to generate sample sales data.
+
+```bash
+# MacOS
 cd scripts
 ./create_sample_data.sh
 ```
 
-Datasets are exported in CSV format to the `data` directory. Existing CSVs will
-be overwritten.
+This will generate the following CSVs in the `data` directory.
 
-### Creating Postgres Database with Docker
+| File Name        | Description                                    |
+| ---------------- | ---------------------------------------------- |
+| billing.csv      | Contains sample user billing data.             |
+| products.csv     | Contains sample product list and their prices. |
+| orders.csv       | Contains sample orders.                        |
+| customers.csv    | Contains sample customers.                     |
+
+Product prices, user names, contact details, credit cards and orders are randomly generated using the `Faker` python package.
+
+Existing CSVs will be overwritten each time the script is executed.
+
+### Creating the Docker Container
 
 Build the Dockerfile.
 
@@ -48,17 +56,13 @@ Build the Dockerfile.
 docker build -t dbt-slamco .
 ```
 
-Create and run the container in detached mode. When the image runs for the first
-time, it will automatically load the database with the sample datasets in the
-`data` folder.
+Create and run the container in detached mode. The datasets we generated earlier will be loaded into the database when we start the container for the first time.
 
 ```shell
 docker run --name dbt-slamco -d -p 5432:5432 dbt-slamco
-
 ```
 
-The Postgres database will now run in the background.
-It is bound to `localhost` on port 5432.
+The Postgres database will now run in the background and accessible via `localhost` on port `5432`.
 
 You can run commands directly in the image using `psql` or `bash`.
 
@@ -87,8 +91,7 @@ password: mydbtproject
 
 ### Using DBT
 
-Configure DBT to connect to the database via `localhost` and port `5432` by
-adding the following configuration to `~/.dbt/profiles.yml`.
+Configure DBT to connect to the database via `localhost` and port `5432` by adding the following configuration to `~/.dbt/profiles.yml`.
 
 ```yaml
 ---
