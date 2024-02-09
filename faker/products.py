@@ -94,6 +94,8 @@ class ProductData():
             product_names = self.electronics_items
 
         start_date = datetime.strptime('1/1/2022', '%m/%d/%Y')
+        end_date = datetime.strptime('1/1/2024', '%m/%d/%Y')
+
         prices = self.generate_product_prices(
                 product_list=product_names,
                 min_price=min_price,
@@ -103,7 +105,7 @@ class ProductData():
         for product in product_names:
             product_price = prices[product]
             product_sku = fake.pystr_format(string_format='####-###-###')
-            created_date = fake.date_between(start_date, date.today())
+            created_date = fake.date_between(start_date, end_date)
             products.append([
                 created_date,
                 product_sku,

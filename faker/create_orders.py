@@ -37,6 +37,7 @@ CURRENCY_NAME = 'Australian Dollar'
 export_path = f'{os.path.dirname(__file__)}/../data'
 orders = []
 start_date = datetime.strptime('1/1/2020', '%m/%d/%Y')
+end_date = datetime.strptime('1/1/2024', '%m/%d/%Y')
 
 fake = Faker('en_AU')
 fake.add_provider(OrderProvider)
@@ -82,7 +83,7 @@ for order_id in range(NUM_ORDERS):
     order_status = fake.order_status(status=financial_status)
 
     # Order dates
-    created_date = fake.date_between(start_date, date.today())
+    created_date = fake.date_between(start_date, end_date)
     paid_date = fake.date_between(created_date, created_date + timedelta(days=5))
     payment_method = fake.payment_method()
 

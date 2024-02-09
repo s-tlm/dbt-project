@@ -15,6 +15,7 @@ export_path = f'{os.path.dirname(__file__)}/../data'
 fake = Faker('en_AU')
 billing = []
 start_date = datetime.strptime('1/1/2020', '%m/%d/%Y')
+end_date = datetime.strptime('1/1/2024', '%m/%d/%Y')
 
 # Randomise customer ids
 customer_ids = list(range(NUM_CUSTOMERS))
@@ -22,7 +23,7 @@ shuffle(customer_ids)
 
 for billing_id in range(NUM_CUSTOMERS):
     # Record created date
-    created_date = fake.date_between(start_date, date.today())
+    created_date = fake.date_between(start_date, end_date)
 
     # Customer ID record belongs to
     customer_id = customer_ids[billing_id]

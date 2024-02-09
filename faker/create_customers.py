@@ -15,10 +15,11 @@ export_path = f'{os.path.dirname(__file__)}/../data'
 fake = Faker('en_AU')
 customers = []
 start_date = datetime.strptime('1/1/2020', '%m/%d/%Y')
+end_date = datetime.strptime('1/1/2024', '%m/%d/%Y')
 
 for customer_id in range(NUM_CUSTOMERS):
     # Record created date
-    created_date = fake.date_between(start_date, date.today())
+    created_date = fake.date_between(start_date, end_date)
 
     # Gender
     gender = choice(["Male", "Female"])
