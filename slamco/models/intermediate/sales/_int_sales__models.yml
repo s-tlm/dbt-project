@@ -1,6 +1,0 @@
----
-version: 2
-
-models:
-  - name: int_customers_expanded
-    description: Intermediate model for customers with first and last purchase dates.

@@ -1,9 +1,9 @@
 ---
-name: 'slamco'
+name: 'greendotco'
 version: '1.0.0'
 config-version: 2
 
-profile: 'slamco'
+profile: 'greendotco'
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
@@ -17,15 +17,6 @@ asset-paths: ["assets"]
 clean-targets:
   - "target"
   - "dbt_packages"
-
-models:
-  slamco:
-    staging:
-      +materialized: view
-    intermediate:
-      +materialized: ephemeral
-    marts:
-      +materialized: table
 
 vars: 
   "dbt_date:time_zone": "Australia/Melbourne"

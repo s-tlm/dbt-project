@@ -1,8 +1,0 @@
----
-version: 2
-
-models:
-  - name: dim_currency
-    description: Currency type dimension.
-  - name: dim_credit_card
-    description: Customer credit card dimension.
