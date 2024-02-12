@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 """
 Creates fake customer data using the Faker package.
 """

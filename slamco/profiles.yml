@@ -1,4 +1,4 @@
-greendotco:
+slamco:
   outputs:
     dev:
       type: postgres

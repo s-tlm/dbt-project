@@ -1,21 +1,21 @@
-# GREENDOTCO
+# SLAMCO
 
-GREENDOTCO is a retail company that offers a wide range of products to meet all
-your shopping needs. With a diverse selection of goods, including groceries,
-clothing and electronics, GREENDOTCO is your one-stop shop for all your shopping
+SLAMCO is a retail company that offers a wide range of products to meet all your
+shopping needs. With a diverse selection of goods, including groceries,
+clothing and electronics, SLAMCO is your one-stop shop for all your shopping
 desires.
 
-You have just been hired as a data engineer for GREENDOTCO! Your first task is
-to model the company's order data for the sales team.
+You have just been hired as a senior data engineer for SLAMCO! Your first task
+is to model the company's order data for the sales team.
 
 ## Tables
 
 | Database    | Schema | Table Name   | Description                       |
 | ----------- | ------ | ------------ | --------------------------------- |
-| development | slamco | customers    | GREENDOTCO's registered customer base |
-| development | slamco | products     | GREENDOTCO's current product offering |
-| development | slamco | billing      | GREENDOTCO's customer billing data    |
-| development | slamco | orders       | GREENDOTCO's raw retail orders        |
+| development | slamco | customers    | SLAMCO's registered customer base |
+| development | slamco | products     | SLAMCO's current product offering |
+| development | slamco | billing      | SLAMCO's customer billing data    |
+| development | slamco | orders       | SLAMCO's raw retail orders        |
 
 ### Customers
 

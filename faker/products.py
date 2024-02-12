@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 """
 Class for creating fake product data using the Faker package.
 """

@@ -1,0 +1,90 @@
+---
+version: 2
+
+models:
+  - name: dim_customers
+    description: Customer dimension.
+  - name: dim_products
+    description: Product dimension.
+
+  - name: jnk_order_indicators
+    description: Order indicator junk dimension.
+
+  - name: fct_orders
+    description: Fact table for SLAMCO customer orders.
+    # Check foreign key relationships
+    columns:
+      - name: order_id
+        description: A degenerate dimension, representing the unique order id.
+        tests:
+          - unique
+          - not_null
+      - name: order_indicator_key 
+        description: A foreign key to the junk dimension.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('jnk_order_indicators')
+              field: order_indicator_key
+      - name: created_date
+        description: The order created date.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_dates')
+              field: date_day
+      - name: paid_date
+        description: The order paid date.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_dates')
+              field: date_day
+      - name: customer_key
+        description: The foreign key to the customer dimension.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_key
+      - name: credit_card_key
+        description: The foreign key to the customer dimension.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_credit_card')
+              field: credit_card_key
+      - name: currency_key
+        description: The foreign key to the currency type dimension.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_currency')
+              field: currency_key
+      - name: product_key
+        description: The foreign key to the product dimension.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_products')
+              field: product_key
+      - name: line_item_quantity
+        description: The number of items purchased in the order.
+        tests:
+          - not_null
+      - name: subtotal
+        description: The subtotal of the order.
+        tests:
+          - not_null
+      - name: taxes
+        description: The amount of taxes paid.
+        tests:
+          - not_null
+      - name: shipping
+        description: The shipping amount paid.
+        tests:
+          - not_null
+      - name: total
+        description: The total amount paid.
+        tests:
+          - not_null
