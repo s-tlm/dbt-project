@@ -1,0 +1,239 @@
+{
+  "generators": [
+    {
+      "table": "customers",
+      "row": {
+        "customer_id": {
+          "_gen": "uuid"
+        },
+        "created_timestamp": {
+          "_gen": "formatDateTime",
+          "ms": {
+              "_gen": "now"
+          },
+          "format": "yyyy-MM-dd'T'HH:mm:ss"
+        },
+        "first_name": {
+          "_gen": "string",
+          "expr": "#{Name.firstName}"
+        },
+        "last_name": {
+          "_gen": "string",
+          "expr": "#{Name.lastName}"
+        },
+        "email_address": {
+          "_gen": "string",
+          "expr": "#{Internet.emailAddress}"
+        },
+        "building_number": {
+          "_gen": "string",
+          "expr": "#{Address.buildingNumber}"
+        },
+        "street_name": {
+          "_gen": "string",
+          "expr": "#{Address.streetName}"
+        },
+        "street_suffix": {
+          "_gen": "string",
+          "expr": "#{Address.streetSuffix}"
+        },
+        "city": {
+          "_gen": "string",
+          "expr": "#{Address.city}"
+        },
+        "zip_code": {
+          "_gen": "string",
+          "expr": "#{Address.zipCode}"
+        },
+        "country": {
+          "_gen": "string",
+          "expr": "#{Address.country}"
+        },
+        "phone_number": {
+          "_gen": "string",
+          "expr": "#{PhoneNumber.cellPhone}"
+        }
+      },
+      "localConfigs": {
+        "maxEvents": 1000
+      }
+    },
+    {
+      "table": "orders",
+      "vars": {
+        "line_item_quantity": {
+          "_gen": "uniformDistribution",
+          "bounds": [1, 10],
+          "decimals": 0
+        },
+        "line_item_price": {
+          "_gen": "string",
+          "expr": "#{Commerce.price}",
+          "cast": "double"
+        },
+        "subtotal": {
+          "_gen": "multiply",
+          "args": [
+            {"_gen": "var", "var": "line_item_quantity"},
+            {"_gen": "var", "var": "line_item_price"}
+          ],
+          "decimals": 2
+        },
+        "tax": {
+          "_gen": "multiply",
+          "args": [
+            0.10,
+            {"_gen": "var", "var": "subtotal"}
+          ],
+          "decimals": 2
+        },
+        "shipping": {
+          "_gen": "oneOf",
+          "choices": [0, 10]
+        }
+      },
+      "row": {
+        "order_id": {
+          "_gen": "uuid"
+        },
+        "order_number": {
+          "_gen": "sequentialInteger"
+        },
+        "customer_id": {
+          "_gen": "lookup",
+          "table": "customers",
+          "path": [
+            "row",
+            "customer_id"
+          ]
+        },
+        "created_timestamp": {
+          "_gen": "formatDateTime",
+          "ms": {
+              "_gen": "now"
+          },
+          "format": "yyyy-MM-dd'T'HH:mm:ss"
+        },
+        "payment_method": {
+          "_gen": "oneOf",
+          "choices": ["Credit Card", "Cash"]
+        },
+        "order_status": {
+          "_gen": "oneOf",
+          "choices": ["Completed", "Failed", "In Progress"]
+        },
+        "line_item_sku": {
+          "_gen": "lookup",
+          "table": "products",
+          "path": [
+            "row",
+            "product_sku"
+          ]
+        },
+        "line_item_name": {
+           "_gen": "string",
+            "expr": "#{Commerce.productName}"
+        },
+        "line_item_quantity": {
+          "_gen": "var",
+          "var": "line_item_quantity"
+        },
+        "line_item_price": {
+          "_gen": "var",
+          "var": "line_item_price"
+        },
+        "payment_status": {
+          "_gen": "oneOf",
+          "choices": ["Paid", "Not Paid", "Refunded", "Bounced"]
+        },
+        "subtotal": {
+          "_gen": "var",
+          "var": "subtotal"
+        },
+        "tax": {
+          "_gen": "var",
+          "var": "tax"
+        },
+        "shipping": {
+          "_gen": "var",
+          "var": "shipping"
+        },
+        "total": {
+          "_gen": "add",
+          "args": [
+            {"_gen": "var", "var": "tax"},
+            {"_gen": "var", "var": "shipping"},
+            {"_gen": "var", "var": "subtotal"}
+          ],
+          "decimals": 2 
+        },
+        "currency_code": {
+          "_gen": "constant",
+          "x": "AUD",
+          "pgHint": "TEXT"
+        },
+        "currency_name": {
+          "_gen": "constant",
+          "x": "Australian Dollar",
+          "pgHint": "TEXT"
+        }
+      },
+      "localConfigs": {
+        "maxEvents": 10000,
+        "throttleMs": {
+          "_gen": "uniformDistribution",
+          "bounds": [
+            0,
+            3000
+          ]
+        }
+      }
+    },
+    {
+      "table": "products",
+      "row": {
+        "product_id": {
+          "_gen": "sequentialInteger"
+        },
+        "created_date": {
+          "_gen": "formatDateTime",
+          "ms": {
+              "_gen": "now"
+          },
+          "format": "yyyy-MM-dd'T'HH:mm:ss"
+        },
+        "product_sku": {
+          "_gen": "uuid"
+        },
+        "product_type": {
+          "_gen": "string",
+          "expr": "#{Commerce.department}"
+        },
+        "product_name": {
+          "_gen": "string",
+          "expr": "#{Commerce.productName}"
+        },
+        "product_price": {
+          "_gen": "string",
+          "expr": "#{Commerce.price}"
+        }
+      },
+      "localConfigs": {
+        "maxEvents": 20
+      }
+    }
+  ],
+  "connections": {
+    "postgres": {
+      "kind": "postgres",
+      "tablePolicy": "dropAndCreate",
+      "connectionConfigs": {
+        "host": "main-db",
+        "port": 5432,
+        "username": "slam",
+        "password": "slam",
+        "db": "source"
+      }
+    }
+  }
+}
