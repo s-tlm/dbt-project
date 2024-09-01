@@ -4,3 +4,4 @@ venv/*
 **/logs/
 data/*
 !data/.gitkeep
+.env
