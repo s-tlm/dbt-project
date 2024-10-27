@@ -3,10 +3,12 @@
 Creates fake customer data using the Faker package.
 """
 
-from random import choice
-from datetime import datetime, date
 import os
+from datetime import datetime
+from random import choice
+
 import pandas as pd
+
 from faker import Faker
 
 NUM_CUSTOMERS = 10000

@@ -4,7 +4,8 @@
 Class for creating fake product data using the Faker package.
 """
 
-from datetime import datetime, date
+from datetime import datetime
+
 from faker import Faker
 
 fake = Faker('en_AU')

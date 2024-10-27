@@ -3,10 +3,12 @@
 Creates fake billing information.
 """
 
-from datetime import datetime, date
-from random import shuffle
 import os
+from datetime import datetime
+from random import shuffle
+
 import pandas as pd
+
 from faker import Faker
 
 NUM_CUSTOMERS = 10000

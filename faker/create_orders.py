@@ -4,12 +4,15 @@
 Creates fake customer orders.
 """
 
-from datetime import datetime, date, timedelta
 import os
+from datetime import datetime, timedelta
+
+import pandas as pd
+
 from faker import Faker
 from faker.providers import BaseProvider
 from products import ProductData
-import pandas as pd
+
 
 class OrderProvider(BaseProvider):
     """Create fake order information."""
