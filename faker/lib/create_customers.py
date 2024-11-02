@@ -12,12 +12,12 @@ import pandas as pd
 from faker import Faker
 
 NUM_CUSTOMERS = 10000
-export_path = f'{os.path.dirname(__file__)}/../data'
+export_path = f"{os.path.dirname(__file__)}/../data"
 
-fake = Faker('en_AU')
+fake = Faker("en_AU")
 customers = []
-start_date = datetime.strptime('1/1/2020', '%m/%d/%Y')
-end_date = datetime.strptime('1/1/2024', '%m/%d/%Y')
+start_date = datetime.strptime("1/1/2020", "%m/%d/%Y")
+end_date = datetime.strptime("1/1/2024", "%m/%d/%Y")
 
 for customer_id in range(NUM_CUSTOMERS):
     # Record created date
@@ -50,43 +50,46 @@ for customer_id in range(NUM_CUSTOMERS):
     # Phone number
     phone_number = fake.phone_number()
 
-    customers.append([
-        customer_id,
-        created_date,
-        gender,
-        prefix,
-        first_name,
-        last_name,
-        email,
-        company_email,
-        building_number,
-        street_name,
-        street_suffix,
-        city,
-        postcode,
-        'Australia',
-        phone_number
-    ])
+    customers.append(
+        [
+            customer_id,
+            created_date,
+            gender,
+            prefix,
+            first_name,
+            last_name,
+            email,
+            company_email,
+            building_number,
+            street_name,
+            street_suffix,
+            city,
+            postcode,
+            "Australia",
+            phone_number,
+        ]
+    )
 
 customers_df = pd.DataFrame(
-        customers,
-        columns=[
-            'customer_id',
-            'created_date',
-            'gender',
-            'prefix',
-            'first_name',
-            'last_name',
-            'email',
-            'company_email',
-            'building_number',
-            'street_name',
-            'street_suffix',
-            'city',
-            'postcode',
-            'country',
-            'phone_number'
-        ])
+    customers,
+    columns=[
+        "customer_id",
+        "created_date",
+        "gender",
+        "prefix",
+        "first_name",
+        "last_name",
+        "email",
+        "company_email",
+        "building_number",
+        "street_name",
+        "street_suffix",
+        "city",
+        "postcode",
+        "country",
+        "phone_number",
+    ],
+)
 
 if not os.path.exists(export_path):
     os.makedirs(export_path)

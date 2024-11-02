@@ -8,16 +8,15 @@ from datetime import datetime
 from random import shuffle
 
 import pandas as pd
-
 from faker import Faker
 
 NUM_CUSTOMERS = 10000
-export_path = f'{os.path.dirname(__file__)}/../data'
+export_path = f"{os.path.dirname(__file__)}/../data"
 
-fake = Faker('en_AU')
+fake = Faker("en_AU")
 billing = []
-start_date = datetime.strptime('1/1/2020', '%m/%d/%Y')
-end_date = datetime.strptime('1/1/2024', '%m/%d/%Y')
+start_date = datetime.strptime("1/1/2020", "%m/%d/%Y")
+end_date = datetime.strptime("1/1/2024", "%m/%d/%Y")
 
 # Randomise customer ids
 customer_ids = list(range(NUM_CUSTOMERS))
@@ -36,27 +35,30 @@ for billing_id in range(NUM_CUSTOMERS):
     credit_card_number = fake.credit_card_number()
     credit_card_expiry_date = fake.credit_card_expire()
 
-    billing.append([
-        billing_id,
-        customer_id,
-        created_date,
-        credit_card_provider,
-        credit_card_security_code,
-        credit_card_number,
-        credit_card_expiry_date
-    ])
+    billing.append(
+        [
+            billing_id,
+            customer_id,
+            created_date,
+            credit_card_provider,
+            credit_card_security_code,
+            credit_card_number,
+            credit_card_expiry_date,
+        ]
+    )
 
 billing_df = pd.DataFrame(
-        billing,
-        columns=[
-            'billing_id',
-            'customer_id',
-            'created_date',
-            'credit_card_provider',
-            'credit_card_security_code',
-            'credit_card_number',
-            'credit_card_expiry_date'
-        ])
+    billing,
+    columns=[
+        "billing_id",
+        "customer_id",
+        "created_date",
+        "credit_card_provider",
+        "credit_card_security_code",
+        "credit_card_number",
+        "credit_card_expiry_date",
+    ],
+)
 
 if not os.path.exists(export_path):
     os.makedirs(export_path)
